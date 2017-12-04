@@ -21,7 +21,7 @@ public class StringClass {
             }
         }
 
-        return Arrays.toString(charArray).replaceAll("\\W", "");
+        return Arrays.toString(charArray).replace(",","");
     }
 
 
