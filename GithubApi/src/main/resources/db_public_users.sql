@@ -1,0 +1,2 @@
+INSERT INTO public.users (id, hash_password, login, role, state) VALUES (1, '$2a$10$io5CLIs7oJcUr5yr2OvBx.e3wpHnV8CjrSYsjts7i/o.mkS5pwK0y', 'Admin', 'ADMIN', 'CONFIRMED');
+INSERT INTO public.users (id, hash_password, login, role, state) VALUES (2, '$2a$10$Yx/0XS1RqL7qvsJWp3mxu.aS7jMhchtxT6B.0.4whYWQnxh3peYai', 'LeisanKokorina', 'USER', 'CONFIRMED');
