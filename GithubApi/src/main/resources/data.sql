@@ -1,7 +1,7 @@
 INSERT INTO users (id, login, hash_password, state, role)
   SELECT
     1,
-    'Admin',
+    'admin',
     '$2a$10$io5CLIs7oJcUr5yr2OvBx.e3wpHnV8CjrSYsjts7i/o.mkS5pwK0y',
     'CONFIRMED',
     'ADMIN'

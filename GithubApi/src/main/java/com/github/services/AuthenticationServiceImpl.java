@@ -1,6 +1,7 @@
 package com.github.services;
 
 import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -17,8 +18,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
   @Override
   public User getUserByAuthentication(Authentication authentication) {
-    String login = authentication.getName();
+
+    String login = authentication.getName().toLowerCase();
     return usersRepository.findByLogin(login).get();
   }
+
+
 
 }

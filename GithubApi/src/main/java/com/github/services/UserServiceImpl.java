@@ -1,51 +1,20 @@
 package com.github.services;
 
+import com.github.models.Repository;
 import com.github.models.User;
-import com.github.repo.UsersRepository;
-
+import com.github.repo.GHRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 import java.util.List;
-
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
-    private UsersRepository usersRepository;
-
+    private GHRepo ghRepo;
 
     @Override
-    public User getUser(Long userId) {
-        return usersRepository.findOne(userId);
+    public List<Repository> getRepositories(User user) {
+        return ghRepo.getRepositoriesByUser(user);
     }
-
-
-//  Пока не работает
-//    @Override
-//    public List<String> getRepositories(User user)  {
-//
-//        try {
-//            GitHub github = GitHub.connect(user.getLogin(),);
-//
-//            Map<String,GHRepository> repositoryMap=github.getMyself().getAllRepositories();
-//
-//            List<String> repositoryList = new ArrayList<>(repositoryMap.keySet());
-//
-//            return repositoryList;
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//        return null ;
-//
-//
-//    }
-
-
 }

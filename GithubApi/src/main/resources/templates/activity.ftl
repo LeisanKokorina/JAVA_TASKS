@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Test task</title>
+    <title>History</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -64,7 +64,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/activity">History</a></li>
+                <li><a href="/profile">Profile</a></li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
 
@@ -75,20 +75,38 @@
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
-            <h3>Hello, ${model.user.login}!</h3>
+
         </div>
         <div class="col-sm-8 text-left-center">
-            <h3>Ваши репозитории:</h3>
+            <h3>History</h3>
             <br>
-                <#list model.repo as repos>
+                 <#list model.loginList as logins>
                 <tr>
-
-                    <td>${repos.name}</td>
-                    <br>
-
+                    <#if logins.user.login == model.user.login>
+                        <td><mark>${logins.user.login}</mark> logged in at ${logins.loginTime}</td>
+                        <br>
+                    <#else >
+                        <td>${logins.user.login} logged in at ${logins.loginTime}</td>
+                        <br>
+                    </#if>
 
                 </tr>
-                </#list>
+                 </#list>
+
+<br>
+            <#list model.logoutList as logouts>
+                    <tr>
+                        <#if logouts.user.login == model.user.login>
+                            <td><mark>${logouts.user.login}</mark> logged out at ${logouts.logoutTime}</td>
+                            <br>
+                        <#else >
+                        <td>${logouts.user.login} logged out at ${logouts.logoutTime}</td>
+                        <br>
+                        </#if>
+
+                    </tr>
+            </#list>
+
         </div>
         <div class="col-sm-2 sidenav">
 
@@ -103,4 +121,3 @@
 
 </body>
 </html>
-

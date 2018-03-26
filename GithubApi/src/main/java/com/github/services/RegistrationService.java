@@ -7,9 +7,9 @@ import org.kohsuke.github.GHUser;
 
 import java.util.List;
 
-public interface AuthorizationService {
+public interface RegistrationService {
 
-    User authorization(RegistrationForm form);
+    String registration(RegistrationForm form);
 
 
 }

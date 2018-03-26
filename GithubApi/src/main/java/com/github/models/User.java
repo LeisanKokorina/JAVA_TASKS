@@ -5,6 +5,9 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,9 +22,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String login;
-
     private String hashPassword;
 
     @Enumerated(value = EnumType.STRING)
@@ -29,6 +30,14 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private State state;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Login> loginList;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Logout> logoutList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Repository> repositories;
 
 
 }
