@@ -35,31 +35,31 @@ public class WrikeTest extends BaseTest {
         checkTwitterReferenceAndIcon();
     }
 
-    @Step
+    @Step("Open url: wrike.com")
     private void openMainPage() {
         driver.get("https://www.wrike.com/");
         commonUtils.assertTitleEquaslTo( "Your online project management software - Wrike");
     }
 
-    @Step
+    @Step("Click 'Get started for free' button near 'Login' button")
     private void openStartFreeModal() {
-        mainP.submitGetStartedBtn();
+        mainP.clickGetStartedBtn();
         commonUtils.assertModalTitleEqualsTo("Start Free trial");
     }
 
-    @Step
+    @Step("Fill in the email field with random generated value of email")
     private void fillFieldOnModal() {
         startFreeTrialM.fillEmailField(5);
     }
 
-    @Step
+    @Step("Click on 'Create my Wrike account' button + check with assertion that you are moved to the next page")
     private void checkOpenedPage() {
         startFreeTrialM.clickSubmit();
         commonUtils.assertTitleEquaslTo( "Thank you for choosing Wrike!");
         commonUtils.assertURLIsEqualTo("https://www.wrike.com/resend/");
     }
 
-    @Step
+    @Step("Fill in the Q&A section at the left part of page (like random generated answers) + check with assertion that your answers are submitted")
     private void fillSurveyFieldsAndSubmit() {
         confirmationP.assertThatSubmitButtonIsEnabled(false);
         confirmationP.fillFieldsWithRandomValues();
@@ -68,13 +68,13 @@ public class WrikeTest extends BaseTest {
         confirmationP.checkSendingSurvey("Thanks for helping us out!");
     }
 
-    @Step
+    @Step("Click on 'Resend email' + check it with assertion")
     private void clickResendEmailBtnAndCheckResult() {
         confirmationP.clickResendEmailBtn();
         confirmationP.checkResendingEmail();
     }
 
-    @Step
+    @Step("Check that section 'Follow us' at the site footer contains the 'Twitter' button that leads to the correct url and has the correct icon;")
     private void checkTwitterReferenceAndIcon() {
         mainP.assertReferenceToTwitter("https://twitter.com/wrike");
         mainP.assertTwitterImageIsCorrect();

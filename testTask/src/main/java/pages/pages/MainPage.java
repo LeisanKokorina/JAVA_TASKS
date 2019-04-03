@@ -11,7 +11,7 @@ public class MainPage extends MainPageElements {
         super(driver);
     }
 
-    public void submitGetStartedBtn() {
+    public void clickGetStartedBtn() {
         if(getStartedBtn().isEnabled()){
             getStartedBtn().click();
         } else {
