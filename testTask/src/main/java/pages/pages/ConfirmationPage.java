@@ -3,8 +3,6 @@ package pages.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.elements.ConfirmationPageElements;
@@ -21,12 +19,12 @@ public class ConfirmationPage extends ConfirmationPageElements {
         if( getSubmitBtn().isEnabled()){
             getSubmitBtn().submit();
         } else {
-            throw new IllegalArgumentException("Кнопка задизейблена и не может быть нажата");
+            throw new IllegalArgumentException("Button is not enable and cannot be pressed");
         }
     }
 
     public void checkSendingSurvey(String successMessage) {
-        assert getSuccessContainer().getText().trim().contains(successMessage) : "Отправка формы. Текущее сообщение не содержит ожидаемого текста : " + successMessage;
+        assert getSuccessContainer().getText().trim().contains(successMessage) : "Submitting the form. The current message does not contain the expected text : " + successMessage;
     }
 
     public void checkResendingEmail() {
@@ -34,14 +32,14 @@ public class ConfirmationPage extends ConfirmationPageElements {
             WebDriverWait wait = new WebDriverWait(driver, 10);
             wait.until(ExpectedConditions.attributeContains(getResendEmailBtn(),"style", "opacity: 0"));
         } catch (TimeoutException e) {
-            throw new  TimeoutException("Resending email button not clicked");
+            throw new  TimeoutException("Resending email button was not pressed");
         }
 
-        assert (getResendEmailContainer().findElement(By.xpath("//span[@class='again']")).getCssValue("display").equals("inline")) : "Не удалось переслать письмо";
+        assert (getResendEmailContainer().findElement(By.xpath("//span[@class='again']")).getCssValue("display").equals("inline")) : "Resending email failed";
     }
 
     public void assertThatSubmitButtonIsEnabled(boolean isEnabled) {
-        assert (getSubmitBtn().isEnabled() == isEnabled) : "Кнопка отправки формы.  О - " + isEnabled + ", actual - " + getSubmitBtn().isEnabled();
+        assert (getSubmitBtn().isEnabled() == isEnabled) : "Submission button (enable or not). Expected - " + isEnabled + ", actual - " + getSubmitBtn().isEnabled();
     }
 
 

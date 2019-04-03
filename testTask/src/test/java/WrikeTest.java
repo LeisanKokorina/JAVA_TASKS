@@ -1,9 +1,7 @@
-import io.qameta.allure.Allure;
+import helpers.CommonUtils;
 import io.qameta.allure.Step;
 import modals.pages.StartFreeTrialModal;
 import org.junit.*;
-
-import static org.junit.Assert.*;
 
 import pages.pages.ConfirmationPage;
 import pages.pages.MainPage;
@@ -13,6 +11,7 @@ public class WrikeTest extends BaseTest {
 
     private MainPage mainP;
     private ConfirmationPage confirmationP;
+    private CommonUtils commonUtils;
     private StartFreeTrialModal startFreeTrialM;
 
 
@@ -20,6 +19,7 @@ public class WrikeTest extends BaseTest {
     public  void init() {
         mainP               = new MainPage(driver);
         confirmationP       = new ConfirmationPage(driver);
+        commonUtils         = new CommonUtils(driver);
 
         startFreeTrialM     = new StartFreeTrialModal(driver);
     }
@@ -36,31 +36,31 @@ public class WrikeTest extends BaseTest {
     }
 
     @Step
-    public void openMainPage() {
+    private void openMainPage() {
         driver.get("https://www.wrike.com/");
-        assertEquals( "Your online project management software - Wrike", driver.getTitle());
+        commonUtils.assertTitleEquaslTo( "Your online project management software - Wrike");
     }
 
     @Step
-    public void openStartFreeModal() {
+    private void openStartFreeModal() {
         mainP.submitGetStartedBtn();
-        assertEquals( startFreeTrialM.getModalTitle(),"Start Free trial");
+        commonUtils.assertModalTitleEqualsTo("Start Free trial");
     }
 
     @Step
-    public void fillFieldOnModal() {
+    private void fillFieldOnModal() {
         startFreeTrialM.fillEmailField(5);
     }
 
     @Step
-    public void checkOpenedPage() {
+    private void checkOpenedPage() {
         startFreeTrialM.clickSubmit();
-        assertEquals( "Thank you for choosing Wrike!", driver.getTitle());
-        assertEquals(driver.getCurrentUrl(),"https://www.wrike.com/resend/");
+        commonUtils.assertTitleEquaslTo( "Thank you for choosing Wrike!");
+        commonUtils.assertURLIsEqualTo("https://www.wrike.com/resend/");
     }
 
     @Step
-    public void fillSurveyFieldsAndSubmit() {
+    private void fillSurveyFieldsAndSubmit() {
         confirmationP.assertThatSubmitButtonIsEnabled(false);
         confirmationP.fillFieldsWithRandomValues();
         confirmationP.assertThatSubmitButtonIsEnabled(true);
@@ -69,13 +69,14 @@ public class WrikeTest extends BaseTest {
     }
 
     @Step
-    public void clickResendEmailBtnAndCheckResult() {
+    private void clickResendEmailBtnAndCheckResult() {
         confirmationP.clickResendEmailBtn();
         confirmationP.checkResendingEmail();
     }
 
     @Step
-    public void checkTwitterReferenceAndIcon() {
+    private void checkTwitterReferenceAndIcon() {
         mainP.assertReferenceToTwitter("https://twitter.com/wrike");
+        mainP.assertTwitterImageIsCorrect();
     }
 }

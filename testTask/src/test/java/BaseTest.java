@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-import java.util.concurrent.TimeUnit;
-
 public class BaseTest {
 
     protected static WebDriver driver;
@@ -17,7 +15,6 @@ public class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
-
 
     @AfterClass
     public static void teardown () {

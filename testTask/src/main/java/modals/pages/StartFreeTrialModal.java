@@ -1,7 +1,6 @@
 package modals.pages;
 
 import modals.elements.StartFreeTrialModalElements;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,10 +31,10 @@ public class StartFreeTrialModal extends StartFreeTrialModalElements {
                 WebDriverWait wait = new WebDriverWait(driver, 10);
                 wait.until(ExpectedConditions.invisibilityOf(getCreateAccountBtn()));
             } catch (TimeoutException e) {
-                throw new  TimeoutException("Button is displaying after submission");
+                throw new  TimeoutException("The button is displayed after sending, although it should not");
             }
         } else {
-            throw new IllegalArgumentException("Кнопка задизейблена и не может быть нажата");
+            throw new IllegalArgumentException("Button is not enable and cannot be pressed");
         }
     }
 }

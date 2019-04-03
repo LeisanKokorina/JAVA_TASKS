@@ -13,6 +13,7 @@ public class MainPageElements {
     public MainPageElements(WebDriver driver) {
         this.driver = driver;
     }
+
     private WebElement getTopContainer() {
         return driver.findElement(By.xpath("//div[@class='wg-header__sticky-menu']"));
     }
@@ -25,11 +26,7 @@ public class MainPageElements {
         return getTopContainer().findElement(By.xpath(".//button[contains(@class, 'wg-header__free-trial-button')]"));
     }
 
-    public String getTitle() {
-        return driver.getTitle();
-    }
-
-    protected WebElement twitterBtn() {
+    protected WebElement getTwitterBtn() {
         return getSocialContainer().get(0);
     }
 }
