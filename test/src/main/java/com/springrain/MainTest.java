@@ -21,7 +21,7 @@ public class MainTest {
         driver = new FirefoxDriver();
     }
 
-    @Test
+    @Test(description = "Открытие страницы")
     public void step1() {
         driver.get(System.getenv("baseUrl"));
         assertThat("Название не соответствует ожидаемому", driver.getTitle().equals("РТ Лабс - ведущий системный интегратор группы компаний «Ростелеком»"));
